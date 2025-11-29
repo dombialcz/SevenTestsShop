@@ -64,9 +64,9 @@ Before running this application, make sure you have the following installed:
 
 1. **Backend Environment Variables**
    
-   The backend `.env` file is already created with:
+   The backend `.env` file should contain:
    ```
-   PORT=5000
+   PORT=5001
    MONGODB_URI=mongodb://localhost:27017/demoshop
    ```
    
@@ -88,8 +88,12 @@ brew services start mongodb-community
 ```
 
 **Windows:**
-```bash
-mongod
+```cmd
+# As a service (recommended)
+net start MongoDB
+
+# Or run manually (in separate terminal)
+"C:\Program Files\MongoDB\Server\<version>\bin\mongod.exe" --dbpath="C:\data\db"
 ```
 
 **Linux:**
@@ -186,6 +190,12 @@ npm run mock-server     # Start mock API server
 
 # Frontend (use with either backend option)
 cd frontend && npm start
+```
+
+**Note for Windows users:** Commands work in PowerShell, Command Prompt, and Git Bash. If using Command Prompt and `&&` doesn't work, run commands separately:
+```cmd
+cd frontend
+npm start
 ```
 
 ## Project Structure
