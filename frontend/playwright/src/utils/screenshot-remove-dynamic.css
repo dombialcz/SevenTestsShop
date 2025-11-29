@@ -1,0 +1,90 @@
+/* 
+ * CSS to hide dynamic elements for consistent Playwright visual testing
+ * This file is applied globally via toHaveScreenshot({ stylePath: ... })
+ */
+
+/* Hide notifications and toasts that may appear during test runs */
+[role="alert"],
+[role="status"],
+.notification,
+.toast,
+.alert,
+.snackbar {
+  display: none !important;
+}
+
+/* Hide loading spinners and progress indicators */
+.spinner,
+.loading,
+.loader,
+[aria-busy="true"],
+.progress,
+.skeleton {
+  display: none !important;
+}
+
+/* Hide timestamps and time-based elements */
+.timestamp,
+.time,
+.date,
+[datetime],
+time {
+  visibility: hidden !important;
+}
+
+/* Hide animated elements that might cause flakiness */
+.animate,
+.animated,
+[class*="animation"],
+[class*="transition"] {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Hide cursor/focus indicators that might vary */
+*:focus,
+*:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Hide scroll bars for consistent screenshots */
+*::-webkit-scrollbar {
+  display: none !important;
+}
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+/* Hide live counters or dynamic badges */
+.badge[data-count],
+.counter,
+.live-update {
+  visibility: hidden !important;
+}
+
+/* Hide any video/gif elements that auto-play */
+video,
+[autoplay] {
+  display: none !important;
+}
+
+/* Prevent caret/cursor in input fields */
+input,
+textarea {
+  caret-color: transparent !important;
+}
+
+/* Hide tooltips that might appear on hover */
+[role="tooltip"],
+.tooltip {
+  display: none !important;
+}
+
+/* Stabilize font rendering across environments */
+* {
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+}

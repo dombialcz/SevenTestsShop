@@ -231,10 +231,255 @@ npm run seed   # Seed database with sample data
 ### Frontend
 
 ```bash
-npm start      # Start development server
-npm run build  # Create production build
-npm test       # Run tests
+npm start                 # Start development server
+npm run build             # Create production build
+npm test                  # Run unit tests
+npm run test:e2e          # Run E2E tests with Playwright
+npm run test:e2e:ui       # Run E2E tests in Playwright UI mode
+npm run test:e2e:headed   # Run E2E tests in headed mode (see browser)
+npm run test:e2e:debug    # Debug E2E tests
+npm run test:e2e:report   # Show E2E test report
+npm run test:visual       # Run visual regression tests
+npm run test:visual:ui    # Run visual tests in UI mode
+npm run test:visual:headed # Run visual tests in headed mode
+npm run test:visual:update # Update visual test snapshots (baselines)
+npm run test:visual:docker # Run visual tests in Docker for consistency
 ```
+
+## Testing
+
+This project includes comprehensive testing at multiple levels:
+
+### Unit Tests (Jest + React Testing Library)
+
+Located in `frontend/src/**/__tests__/`, unit tests cover individual components and utility functions.
+
+```bash
+cd frontend
+npm test              # Run in watch mode
+npm test -- --coverage # Run with coverage report
+```
+
+**Test Coverage:**
+- 61 unit tests across 5 test suites
+- Components: ProductCard, CartItem, Navbar
+- Utils: CoffeeBuilder calculations
+- All tests passing ✅
+
+### E2E Tests (Playwright)
+
+Located in `frontend/playwright/`, end-to-end tests verify complete user workflows using the mock server.
+
+```bash
+cd frontend
+npm run test:e2e          # Run all E2E tests
+npm run test:e2e:ui       # Interactive UI mode
+npm run test:ui           # Run only @ui tagged tests
+npm run test:mock         # Run only @mock tagged tests
+npm run test:error        # Run only @error tagged tests
+```
+
+**Features:**
+- Page Object Model architecture
+- Mock server integration (ng-apimock)
+- Test fixtures for reusable components
+- Error scenario testing (404, 500, network failures)
+- Shopping cart workflows
+- Product filtering and display
+
+### Visual Regression Tests (Playwright)
+
+Visual tests crawl the entire application and capture screenshots for comparison.
+
+```bash
+cd frontend
+npm run test:visual           # Run visual tests locally
+npm run test:visual:docker    # Run in Docker (consistent across platforms)
+npm run test:visual:update    # Update baseline screenshots
+```
+
+**What's Tested:**
+- Homepage, Shop, Cart, Admin, Coffee Builder pages
+- Category filtering
+- Mobile, tablet, and desktop viewports
+- Component states (hover, focus, populated, empty)
+- Error states (404, 500)
+- All tests use mock server for consistent data
+
+**Docker for Consistency:**
+Visual tests in Docker ensure screenshots are identical across macOS, Linux, and Windows:
+
+```bash
+# From project root
+./docker-run-visual-tests.sh
+```
+
+The script automatically:
+- Detects Playwright version
+- Uses official Playwright Docker image
+- Mounts workspace and runs visual tests
+- Saves screenshots to `frontend/playwright/src/snapshots/`
+
+### Mock Server (ng-apimock)
+
+Located in `mock-server/`, provides consistent API responses for testing.
+
+```bash
+cd mock-server
+npm install
+npm start    # Starts on http://localhost:9999
+```
+
+**Features:**
+- 5 API endpoints (products, categories, orders)
+- Multiple scenarios per endpoint (success, error, edge cases)
+- 5 presets: happy-path, error-scenarios, slow-network, empty-store, validation-errors
+- Web UI at http://localhost:9999/mocking to switch scenarios
+
+**Available Endpoints:**
+- GET `/api/products` - List all products
+- GET `/api/products/:id` - Get product by ID
+- GET `/api/categories` - List categories
+- PUT `/api/products/:id` - Update product
+- POST `/api/orders` - Create order
+
+**Example Usage:**
+```bash
+# Start mock server
+cd mock-server && npm start
+
+# In another terminal, run tests
+cd frontend && npm run test:e2e
+```
+
+## Visual Regression Testing
+
+Visual tests capture screenshots of the application and compare them against baseline images to detect unintended visual changes.
+
+### How Visual Testing Works
+
+Visual regression testing automatically:
+1. Navigates through all pages of the application
+2. Captures screenshots in multiple states (empty, populated, different viewports)
+3. Compares new screenshots against baseline images
+4. Highlights any visual differences for review
+
+**Benefits:**
+- Catch unintended CSS changes
+- Verify responsive design across viewports
+- Detect layout shifts and rendering issues
+- Document visual state of the application
+
+### Running Visual Tests
+
+#### Local Testing (macOS)
+
+```bash
+cd frontend
+
+# First run - create baseline snapshots
+npm run test:visual:update
+
+# Subsequent runs - compare against baselines
+npm run test:visual
+
+# Update baselines after intentional changes
+npm run test:visual:update
+
+# Interactive UI mode
+npm run test:visual:ui
+
+# View test report
+npx playwright show-report playwright-report-visual
+```
+
+#### Docker Testing (Cross-platform consistency)
+
+For pixel-perfect consistency across macOS, Linux, and Windows, use Docker:
+
+```bash
+# From project root
+./docker-run-visual-tests.sh
+```
+
+**Why Docker?**
+- Font rendering differs across operating systems
+- Browser engines may render slightly differently
+- Docker ensures identical screenshots in CI/CD pipelines
+- Baseline snapshots generated in Docker work on any platform
+
+**What Docker does:**
+1. Detects your Playwright version automatically
+2. Pulls official Playwright Docker image
+3. Mounts your workspace
+4. Runs visual tests in isolated environment
+5. Saves screenshots back to your local filesystem
+
+### What Gets Tested
+
+The visual test suite covers:
+
+**Pages (14 screenshots):**
+- Homepage - initial load
+- Shop page - all products, with category filter
+- Product detail page
+- Coffee Builder - initial state, with options selected
+- Cart - empty state, with items
+- Admin panel - product management
+- Mobile viewport - shop page
+- Tablet viewport - coffee builder
+
+**Components:**
+- Header/navigation - default state
+- Product cards - default and hover states
+
+**Test Configuration:**
+- Browser: Chromium (headless)
+- Default Viewport: 1440x900 (desktop)
+- Mobile: 390x844, Tablet: 1024x1366
+- Snapshot Location: `frontend/playwright/src/specs/visual-crawl.spec.ts-snapshots/`
+- Dynamic elements (timestamps, animations) automatically hidden via CSS
+
+### Updating Baselines
+
+Update baseline snapshots when you make intentional visual changes:
+
+```bash
+cd frontend
+
+# Review current failures first
+npm run test:visual
+
+# If changes are intentional, update baselines
+npm run test:visual:update
+
+# Verify new baselines
+npm run test:visual
+```
+
+**⚠️ Important:** Always review screenshot diffs before updating baselines. Unexpected changes may indicate bugs.
+
+### Troubleshooting Visual Tests
+
+**Tests fail with small pixel differences:**
+- Normal due to font rendering differences between OS
+- Use Docker for consistent results
+- Adjust threshold in `playwright.visual.config.ts` if needed
+
+**All tests fail on first run:**
+- Expected - no baseline snapshots exist yet
+- Run `npm run test:visual:update` to create baselines
+
+**Snapshots differ between local and CI:**
+- Generate baselines using Docker: `./docker-run-visual-tests.sh --update-snapshots`
+- Commit Docker-generated snapshots to version control
+
+**Want to test only specific pages:**
+```bash
+npx playwright test --config=playwright.visual.config.ts --grep "Shop Page"
+```
+
+
 
 ## Features in Detail
 

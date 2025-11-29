@@ -20,7 +20,12 @@
     "test:e2e:report": "playwright show-report",
     "test:ui": "playwright test --grep @ui",
     "test:mock": "playwright test --grep @mock",
-    "test:error": "playwright test --grep @error"
+    "test:error": "playwright test --grep @error",
+    "test:visual": "playwright test --config=playwright.visual.config.ts",
+    "test:visual:ui": "playwright test --config=playwright.visual.config.ts --ui",
+    "test:visual:headed": "playwright test --config=playwright.visual.config.ts --headed",
+    "test:visual:update": "playwright test --config=playwright.visual.config.ts --update-snapshots",
+    "test:visual:docker": "../docker-run-visual-tests.sh"
   },
   "eslintConfig": {
     "extends": [
