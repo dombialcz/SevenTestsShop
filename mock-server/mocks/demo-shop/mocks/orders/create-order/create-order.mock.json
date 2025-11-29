@@ -1,0 +1,62 @@
+{
+  "request": {
+    "url": "/api/orders$",
+    "method": "POST"
+  },
+  "name": "createOrder",
+  "isArray": false,
+  "responses": {
+    "success": {
+      "default": true,
+      "status": 201,
+      "headers": { "content-type": "application/json" },
+      "file": "created-order.json"
+    },
+    "slow": {
+      "status": 201,
+      "delay": 2000,
+      "headers": { "content-type": "application/json" },
+      "file": "created-order.json"
+    },
+    "validationError": {
+      "status": 400,
+      "headers": { "content-type": "application/json" },
+      "data": {
+        "error": "Validation failed",
+        "details": {
+          "items": "Items array is required",
+          "totalAmount": "Total amount must be a positive number"
+        }
+      }
+    },
+    "emptyCart": {
+      "status": 400,
+      "headers": { "content-type": "application/json" },
+      "data": {
+        "error": "Cart is empty - cannot create order"
+      }
+    },
+    "outOfStock": {
+      "status": 409,
+      "headers": { "content-type": "application/json" },
+      "data": {
+        "error": "One or more items are out of stock",
+        "outOfStockItems": ["507f1f77bcf86cd799439011"]
+      }
+    },
+    "paymentFailed": {
+      "status": 402,
+      "headers": { "content-type": "application/json" },
+      "data": {
+        "error": "Payment processing failed"
+      }
+    },
+    "serverError": {
+      "status": 500,
+      "headers": { "content-type": "application/json" },
+      "data": {
+        "error": "Failed to create order"
+      }
+    }
+  }
+}

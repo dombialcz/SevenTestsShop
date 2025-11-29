@@ -1,0 +1,24 @@
+{
+  "name": "slowNetwork",
+  "mocks": {
+    "getProducts": {
+      "scenario": "slow"
+    },
+    "getProductById": {
+      "scenario": "success"
+    },
+    "getCategories": {
+      "scenario": "success"
+    },
+    "updateProduct": {
+      "scenario": "success"
+    },
+    "createOrder": {
+      "scenario": "slow"
+    }
+  },
+  "variables": {
+    "environment": "testing",
+    "mode": "slow-network"
+  }
+}

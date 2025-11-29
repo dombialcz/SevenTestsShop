@@ -1,0 +1,41 @@
+{
+  "request": {
+    "url": "/api/products$",
+    "method": "GET"
+  },
+  "name": "getProducts",
+  "isArray": true,
+  "responses": {
+    "success": {
+      "default": true,
+      "status": 200,
+      "headers": { "content-type": "application/json" },
+      "file": "products-list.json"
+    },
+    "empty": {
+      "status": 200,
+      "headers": { "content-type": "application/json" },
+      "data": []
+    },
+    "slow": {
+      "status": 200,
+      "delay": 3000,
+      "headers": { "content-type": "application/json" },
+      "file": "products-list.json"
+    },
+    "unauthorized": {
+      "status": 401,
+      "headers": { "content-type": "application/json" },
+      "data": {
+        "error": "Unauthorized access"
+      }
+    },
+    "serverError": {
+      "status": 500,
+      "headers": { "content-type": "application/json" },
+      "data": {
+        "error": "Internal server error"
+      }
+    }
+  }
+}

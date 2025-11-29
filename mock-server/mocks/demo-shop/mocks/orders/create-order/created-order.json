@@ -1,0 +1,22 @@
+{
+  "_id": "674a9999567890abcdef9999",
+  "items": [
+    {
+      "productId": "674a1234567890abcdef0001",
+      "name": "Wireless Headphones",
+      "price": 79.99,
+      "quantity": 2
+    },
+    {
+      "productId": "674a1234567890abcdef0007",
+      "name": "Espresso Beans",
+      "price": 14.99,
+      "quantity": 1
+    }
+  ],
+  "totalAmount": 174.97,
+  "status": "pending",
+  "createdAt": "2024-11-29T10:30:00.000Z",
+  "updatedAt": "2024-11-29T10:30:00.000Z",
+  "__v": 0
+}

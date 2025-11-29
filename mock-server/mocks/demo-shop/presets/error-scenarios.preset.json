@@ -1,0 +1,24 @@
+{
+  "name": "errorScenarios",
+  "mocks": {
+    "getProducts": {
+      "scenario": "serverError"
+    },
+    "getProductById": {
+      "scenario": "notFound"
+    },
+    "getCategories": {
+      "scenario": "serverError"
+    },
+    "updateProduct": {
+      "scenario": "serverError"
+    },
+    "createOrder": {
+      "scenario": "serverError"
+    }
+  },
+  "variables": {
+    "environment": "testing",
+    "mode": "error"
+  }
+}

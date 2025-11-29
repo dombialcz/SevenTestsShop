@@ -1,0 +1,167 @@
+.cart {
+  padding: 2rem;
+}
+
+.empty-cart {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #666;
+  margin-top: 4rem;
+}
+
+.cart-items {
+  margin-bottom: 2rem;
+}
+
+.cart-item {
+  background: white;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.cart-item-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.cart-item-details {
+  flex: 1;
+}
+
+.cart-item-details h3 {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.custom-coffee-details {
+  background: #f9f9f9;
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.custom-coffee-details p {
+  margin: 0.25rem 0;
+}
+
+.cart-item-price {
+  color: #4CAF50;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.cart-item-quantity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cart-item-quantity button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cart-item-quantity button:hover {
+  background: #f5f5f5;
+}
+
+.cart-item-total {
+  font-weight: bold;
+  font-size: 1.2rem;
+  min-width: 100px;
+  text-align: right;
+}
+
+.remove-btn {
+  padding: 0.5rem 1rem;
+}
+
+.cart-summary {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  max-width: 400px;
+  margin-left: auto;
+}
+
+.cart-summary h2 {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.summary-details {
+  margin-bottom: 1.5rem;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #666;
+}
+
+.summary-row.total-row {
+  padding-top: 1rem;
+  border-top: 2px solid #eee;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.total-amount {
+  font-weight: bold;
+  color: #4CAF50;
+  font-size: 1.5rem;
+}
+
+.checkout-btn {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.cart-summary .btn-secondary {
+  width: 100%;
+}
+
+.checkout-confirmation {
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.checkout-confirmation h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.checkout-confirmation p {
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.checkout-total {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #4CAF50;
+  margin: 1rem 0;
+}
+
+.checkout-confirmation .btn {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}

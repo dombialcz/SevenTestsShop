@@ -1,0 +1,48 @@
+{
+  "request": {
+    "url": "/api/products/[a-f0-9]{24}$",
+    "method": "PUT"
+  },
+  "name": "updateProduct",
+  "isArray": false,
+  "responses": {
+    "success": {
+      "default": true,
+      "status": 200,
+      "headers": { "content-type": "application/json" },
+      "file": "updated-product.json"
+    },
+    "notFound": {
+      "status": 404,
+      "headers": { "content-type": "application/json" },
+      "data": {
+        "error": "Product not found"
+      }
+    },
+    "validationError": {
+      "status": 400,
+      "headers": { "content-type": "application/json" },
+      "data": {
+        "error": "Validation failed",
+        "details": {
+          "price": "Price must be a positive number",
+          "inStock": "InStock must be a boolean"
+        }
+      }
+    },
+    "unauthorized": {
+      "status": 401,
+      "headers": { "content-type": "application/json" },
+      "data": {
+        "error": "Unauthorized - Admin access required"
+      }
+    },
+    "serverError": {
+      "status": 500,
+      "headers": { "content-type": "application/json" },
+      "data": {
+        "error": "Failed to update product"
+      }
+    }
+  }
+}

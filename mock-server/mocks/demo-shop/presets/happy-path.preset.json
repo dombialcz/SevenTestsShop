@@ -1,0 +1,24 @@
+{
+  "name": "happyPath",
+  "mocks": {
+    "getProducts": {
+      "scenario": "success"
+    },
+    "getProductById": {
+      "scenario": "success"
+    },
+    "getCategories": {
+      "scenario": "success"
+    },
+    "updateProduct": {
+      "scenario": "success"
+    },
+    "createOrder": {
+      "scenario": "success"
+    }
+  },
+  "variables": {
+    "environment": "testing",
+    "mode": "success"
+  }
+}

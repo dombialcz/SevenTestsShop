@@ -1,0 +1,24 @@
+{
+  "name": "emptyStore",
+  "mocks": {
+    "getProducts": {
+      "scenario": "empty"
+    },
+    "getProductById": {
+      "scenario": "notFound"
+    },
+    "getCategories": {
+      "scenario": "empty"
+    },
+    "updateProduct": {
+      "scenario": "notFound"
+    },
+    "createOrder": {
+      "scenario": "emptyCart"
+    }
+  },
+  "variables": {
+    "environment": "testing",
+    "mode": "empty-store"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "validationErrors",
+  "mocks": {
+    "getProducts": {
+      "scenario": "success"
+    },
+    "getProductById": {
+      "scenario": "success"
+    },
+    "getCategories": {
+      "scenario": "success"
+    },
+    "updateProduct": {
+      "scenario": "validationError"
+    },
+    "createOrder": {
+      "scenario": "validationError"
+    }
+  },
+  "variables": {
+    "environment": "testing",
+    "mode": "validation-errors"
+  }
+}

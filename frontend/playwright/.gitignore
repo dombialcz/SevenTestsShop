@@ -1,0 +1,7 @@
+# Playwright test artifacts
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Playwright browser binaries (optional - can include if needed)
+# .browsers/

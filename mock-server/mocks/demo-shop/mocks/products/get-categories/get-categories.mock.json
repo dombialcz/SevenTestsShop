@@ -1,0 +1,28 @@
+{
+  "request": {
+    "url": "/api/products/categories/all$",
+    "method": "GET"
+  },
+  "name": "getCategories",
+  "isArray": true,
+  "responses": {
+    "success": {
+      "default": true,
+      "status": 200,
+      "headers": { "content-type": "application/json" },
+      "data": ["Electronics", "Clothing", "Home", "Coffee"]
+    },
+    "empty": {
+      "status": 200,
+      "headers": { "content-type": "application/json" },
+      "data": []
+    },
+    "serverError": {
+      "status": 500,
+      "headers": { "content-type": "application/json" },
+      "data": {
+        "error": "Failed to fetch categories"
+      }
+    }
+  }
+}

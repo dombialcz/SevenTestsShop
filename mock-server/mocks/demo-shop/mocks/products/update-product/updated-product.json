@@ -1,0 +1,10 @@
+{
+  "_id": "674a1234567890abcdef0001",
+  "name": "Wireless Headphones",
+  "category": "Electronics",
+  "price": 89.99,
+  "description": "Premium wireless headphones with noise cancellation",
+  "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzAwNjZmZiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7wn46nIEhlYWRwaG9uZXM8L3RleHQ+PC9zdmc+",
+  "inStock": true,
+  "__v": 0
+}
