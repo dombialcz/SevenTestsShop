@@ -74,7 +74,11 @@ Before running this application, make sure you have the following installed:
 
 ## Running the Application
 
-### 1. Start MongoDB
+You can run the application with either the **real MongoDB backend** or the **mock server** for testing.
+
+### Option 1: Real Backend (MongoDB Required)
+
+#### 1. Start MongoDB
 
 Make sure MongoDB is running on your system:
 
@@ -93,11 +97,15 @@ mongod
 sudo systemctl start mongod
 ```
 
-### 2. Seed the Database
+#### 2. Seed the Database
 
 Populate the database with initial product data:
 
 ```bash
+# From project root
+npm run backend:seed
+
+# Or from backend directory
 cd backend
 npm run seed
 ```
@@ -111,16 +119,20 @@ Successfully seeded database with 24 products
 6 items per category
 ```
 
-### 3. Start the Backend Server
+#### 3. Start the Backend Server
 
 ```bash
+# From project root
+npm run backend
+
+# Or from backend directory
 cd backend
 npm run dev
 ```
 
-The backend will run on `http://localhost:5000`
+The backend will run on `http://localhost:5001`
 
-### 4. Start the Frontend (in a new terminal)
+#### 4. Start the Frontend (in a new terminal)
 
 ```bash
 cd frontend
@@ -128,6 +140,53 @@ npm start
 ```
 
 The frontend will run on `http://localhost:3000` and automatically open in your browser.
+
+### Option 2: Mock Server (No MongoDB Required)
+
+For testing and development without MongoDB, use the ng-apimock server:
+
+#### 1. Start the Mock Server
+
+```bash
+# From project root
+npm run mock-server
+
+# Or manually
+cd mock-server
+npm install
+npm start
+```
+
+The mock server will run on `http://localhost:9999`
+
+**Features:**
+- Realistic API responses without database
+- Multiple response scenarios (success, errors, edge cases)
+- 5 presets for different testing scenarios
+- Web UI at http://localhost:9999/dev-interface
+
+#### 2. Start the Frontend
+
+```bash
+cd frontend
+npm start
+```
+
+The frontend will automatically connect to the mock server on port 9999.
+
+### Quick Start Commands
+
+```bash
+# Real Backend
+npm run backend:seed    # Seed database (one-time)
+npm run backend         # Start MongoDB backend
+
+# Mock Server
+npm run mock-server     # Start mock API server
+
+# Frontend (use with either backend option)
+cd frontend && npm start
+```
 
 ## Project Structure
 
@@ -166,22 +225,36 @@ SevenTestsShop/
 
 ## API Endpoints
 
-### Products
+### Real Backend (Port 5001)
+
+#### Products
 
 - `GET /api/products` - Get all products
 - `GET /api/products?category=Electronics` - Get products by category
 - `GET /api/products/:id` - Get single product
 - `GET /api/products/categories/all` - Get all categories
+- `PUT /api/products/:id` - Update product (Admin)
 
-### Orders
+#### Orders
 
 - `POST /api/orders` - Create new order
 - `GET /api/orders` - Get all orders
 - `GET /api/orders/:id` - Get single order
 
-### Health Check
+#### Health Check
 
 - `GET /api/health` - Server health check
+
+### Mock Server (Port 9999)
+
+The mock server provides the same endpoints with configurable scenarios:
+
+- **Success responses** - Normal operation
+- **Error states** - 404, 500, validation errors
+- **Edge cases** - Empty results, slow responses
+- **Presets** - Predefined scenario combinations
+
+**Dev Interface:** http://localhost:9999/dev-interface
 
 ## Usage
 

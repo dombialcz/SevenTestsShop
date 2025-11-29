@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Demo shop with React frontend and Node.js backend",
   "scripts": {
+    "backend": "cd backend && npm run dev",
+    "backend:seed": "cd backend && npm run seed",
     "mock-server": "node ./mock-server/mock-server.js demo-shop",
+    "dev:backend": "npm run backend",
     "dev:mocks": "npm run mock-server"
   },
   "devDependencies": {
